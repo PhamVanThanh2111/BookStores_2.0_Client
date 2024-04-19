@@ -14,9 +14,10 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
@@ -712,9 +713,9 @@ public class HoaDon_GUI extends JPanel {
 		}
 		hoaDon.setKhachHang(khachHang);
 		hoaDon.setNhanVien(nhanVien_DAO.getNhanVienTheoMa(maNhanVien));
-		hoaDon.setNgayLap(new java.sql.Date(new Date().getTime()));
+		hoaDon.setNgayLap(Date.valueOf(LocalDate.now()));
 		hoaDon.setThanhTien(tinhThanhTien());
-		hoaDon_DAO.themHoaDon(hoaDon);
+		hoaDon = hoaDon_DAO.themHoaDon(hoaDon);
 		for (int i = 0; i < model.getRowCount(); i++) {
 			SanPham sanPham = sanPham_DAO.getSanPhamTheoTen(model.getValueAt(i, 0).toString());
 			ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();

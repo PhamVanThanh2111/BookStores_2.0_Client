@@ -421,7 +421,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			hoaDon.setKhachHang(phieuDatHang.getKhachHang());
 			hoaDon.setNgayLap(phieuDatHang.getNgayLap());
 			hoaDon.setThanhTien(phieuDatHang.getThanhTien());
-			hoaDon_DAO.themHoaDon(hoaDon);
+			hoaDon = hoaDon_DAO.themHoaDon(hoaDon);
 			
 			// thêm chi tiết hóa đơn
 			for (ChiTietPhieuDatHang chiTietPhieuDatHang : chiTietPhieuDatHang_DAO.getAllChiTietPhieuDatHangTheoMa(modelDSPD.getValueAt(row, 0).toString())) {

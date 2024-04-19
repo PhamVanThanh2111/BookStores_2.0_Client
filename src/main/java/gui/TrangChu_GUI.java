@@ -14,12 +14,14 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.swing.border.LineBorder;
 
 import dao.impl.Ca_Impl;
 import dao.impl.HoaDon_Impl;
 import dao.impl.NhanVien_Impl;
+import entity.HoaDon;
 import entity.NhanVien;
 
 import javax.swing.ImageIcon;
@@ -204,7 +206,9 @@ public class TrangChu_GUI extends JPanel {
 	}
 	
 	private double tinhDoanhThuNhanVienTrongNgay(NhanVien nhanVien) throws RemoteException {
-		return nhanVien_DAO.getDoanhThuNhanVienTheoNgay(nhanVien.getMaNhanVien(), new Date(new java.util.Date().getTime()));
+		List<HoaDon> hoaDonList = hoaDon_DAO.getHoaDonTheoNhanVienNgayHienTai(nhanVien.getMaNhanVien());
+		return hoaDonList.stream().map(hoaDon -> hoaDon.getThanhTien()).reduce(0.0F, (a, b) -> a + b);
+		/*nhanVien_DAO.getDoanhThuNhanVienTheoNgay(nhanVien.getMaNhanVien(), new Date(new java.util.Date().getTime()));*/
 	}
 	
 	public void refresh() throws RemoteException {

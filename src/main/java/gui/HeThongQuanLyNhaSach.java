@@ -1090,15 +1090,15 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-//
-//		Runnable loadDataHoaDon = () -> {
-//			try {
-//				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
-//			} catch (RemoteException e1) {
-//				e1.printStackTrace();
-//			}
-//		};
-//
+
+		Runnable loadDataHoaDon = () -> {
+			try {
+				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+		};
+
 		executor.execute(loadDataNhanVien);
 		executor.execute(loadDataThongKe);
 		executor.execute(loadDataDanhSachDatHang);
@@ -1108,8 +1108,8 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		executor.execute(loadDataNhaXuatBan_NhanVien);
 		executor.execute(loadDataDungCuHocTap_NhanVien);
 		executor.execute(loadDataNhaCungCap_NhanVien);
-//		executor.execute(loadDataHoaDon);
-//		executor.shutdown();
+		executor.execute(loadDataHoaDon);
+		executor.shutdown();
 	}
 
 	public HeThongQuanLyNhaSach() throws RemoteException, MalformedURLException, NotBoundException {

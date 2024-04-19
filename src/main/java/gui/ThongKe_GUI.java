@@ -463,7 +463,6 @@ public class ThongKe_GUI extends JPanel {
         });
 		
 		nhanVien_DAO.getTongHoaDonSoLuongNhanVien().forEach((nhanVien, soLuongSanPham) -> {
-<<<<<<< HEAD
             List<HoaDon> hoaDons = null;
             try {
                 hoaDons = hoaDon_DAO.getHoaDonTheoMaNhanVien(nhanVien.getMaNhanVien());
@@ -471,15 +470,6 @@ public class ThongKe_GUI extends JPanel {
                 throw new RuntimeException(e);
             }
             datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(hoaDons.size(), "Hóa đơn", nhanVien.getTenNhanVien());
-=======
-			List<HoaDon> hoaDons = null;
-			try {
-			    hoaDons = hoaDon_DAO.getHoaDonTheoMaNhanVien(nhanVien.getMaNhanVien());
-			} catch (RemoteException e) {
-			    throw new RuntimeException(e);
-			}
-			datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(hoaDons.size(), "Hóa đơn", nhanVien.getTenNhanVien());
->>>>>>> 9742febd3579d45d03745e780bfa3b76b646e305
 			datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(soLuongSanPham, "Sản phẩm", nhanVien.getTenNhanVien());
 		});
 
