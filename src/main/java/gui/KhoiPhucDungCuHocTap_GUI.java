@@ -43,7 +43,7 @@ public class KhoiPhucDungCuHocTap_GUI extends JInternalFrame {
 	public KhoiPhucDungCuHocTap_GUI(List<DungCuHocTap> ds) throws RemoteException, MalformedURLException, NotBoundException {
 		this.ds = ds;
 		
-		dungCuHocTap_DAO = (DungCuHocTap_Impl) Naming.lookup(URL + "dungCuHocTap");
+		dungCuHocTap_DAO = (DungCuHocTap_Impl) Naming.lookup(URL + "dungCuHocTapDAO");
 		
 		setBounds(100, 100, 882, 495);
 		getContentPane().setLayout(null);

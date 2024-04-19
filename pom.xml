@@ -57,5 +57,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
 		</dependency>
-	</dependencies>
+      <dependency>
+          <groupId>BookStores</groupId>
+          <artifactId>0</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+          <scope>compile</scope>
+      </dependency>
+  </dependencies>
 </project>

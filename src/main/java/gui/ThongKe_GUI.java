@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import entity.HoaDon;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -404,6 +406,9 @@ public class ThongKe_GUI extends JPanel {
 		
 		// add value
 		sanPham_DAO.getSanPhamBanChay().forEach((sanPham, soLuongDaBan) -> {
+			if(sanPham == null){
+				System.out.println("San pham null");
+			}
 			datasetSanPhamBanChay.addValue(soLuongDaBan, "Sản phẩm", sanPham.getTenSanPham());
 		});
 		
@@ -456,7 +461,13 @@ public class ThongKe_GUI extends JPanel {
         });
 		
 		nhanVien_DAO.getTongHoaDonSoLuongNhanVien().forEach((nhanVien, soLuongSanPham) -> {
-			datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(nhanVien.getHoaDons().size(), "Hóa đơn", nhanVien.getTenNhanVien());
+            List<HoaDon> hoaDons = null;
+            try {
+                hoaDons = hoaDon_DAO.getHoaDonTheoMaNhanVien(nhanVien.getMaNhanVien());
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+            datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(hoaDons.size(), "Hóa đơn", nhanVien.getTenNhanVien());
 			datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(soLuongSanPham, "Sản phẩm", nhanVien.getTenNhanVien());
 		});
 

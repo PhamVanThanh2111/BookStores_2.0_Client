@@ -1295,7 +1295,7 @@ public class Sach_GUI extends JPanel {
 					JOptionPane.YES_NO_OPTION);
 			if (tb == JOptionPane.YES_OPTION) {
 					sach_DAO.xoaSachVaoThungRac((String) model.getValueAt(row, 0));
-					System.out.println((String) model.getValueAt(row, 0));
+//					System.out.println((String) model.getValueAt(row, 0));
 					JOptionPane.showMessageDialog(null, "Xóa thành công!");
 					refresh();
 			}

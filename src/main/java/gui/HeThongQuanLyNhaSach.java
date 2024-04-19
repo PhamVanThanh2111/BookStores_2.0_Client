@@ -441,21 +441,21 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblIconDangXuat.setBackground(new Color(39, 63, 96));
 			}
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
-						JOptionPane.YES_NO_OPTION);
-				if (option == JOptionPane.YES_OPTION) {
-					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
-					try {
-						heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
-						heThongQuanLyNhaSach.setVisible(true);
-					} catch (RemoteException | MalformedURLException | NotBoundException e1) {
-						e1.printStackTrace();
-					}
-					setVisible(false);
-				}
-			}
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
+//						JOptionPane.YES_NO_OPTION);
+//				if (option == JOptionPane.YES_OPTION) {
+//					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
+//					try {
+//						heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+//						heThongQuanLyNhaSach.setVisible(true);
+//					} catch (RemoteException | MalformedURLException | NotBoundException e1) {
+//						e1.printStackTrace();
+//					}
+//					setVisible(false);
+//				}
+//			}
 		});
 		pMenu2.add(lblDangXuat);
 
@@ -791,21 +791,21 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblIconDangXuat.setBackground(new Color(39, 63, 96));
 			}
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
-						JOptionPane.YES_NO_OPTION);
-				if (option == JOptionPane.YES_OPTION) {
-					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
-					try {
-						heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
-						heThongQuanLyNhaSach.setVisible(true);
-					} catch (RemoteException | MalformedURLException | NotBoundException e1) {
-						e1.printStackTrace();
-					}
-					setVisible(false);
-				}
-			}
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
+//						JOptionPane.YES_NO_OPTION);
+//				if (option == JOptionPane.YES_OPTION) {
+//					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
+//					try {
+//						heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+//						heThongQuanLyNhaSach.setVisible(true);
+//					} catch (RemoteException | MalformedURLException | NotBoundException e1) {
+//						e1.printStackTrace();
+//					}
+//					setVisible(false);
+//				}
+//			}
 		});
 		pMenu2.add(lblIconDangXuat);
 
@@ -1090,15 +1090,15 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-
-		Runnable loadDataHoaDon = () -> {
-			try {
-				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			}
-		};
-
+//
+//		Runnable loadDataHoaDon = () -> {
+//			try {
+//				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
+//			} catch (RemoteException e1) {
+//				e1.printStackTrace();
+//			}
+//		};
+//
 		executor.execute(loadDataNhanVien);
 		executor.execute(loadDataThongKe);
 		executor.execute(loadDataDanhSachDatHang);
@@ -1108,19 +1108,19 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		executor.execute(loadDataNhaXuatBan_NhanVien);
 		executor.execute(loadDataDungCuHocTap_NhanVien);
 		executor.execute(loadDataNhaCungCap_NhanVien);
-		executor.execute(loadDataHoaDon);
-		executor.shutdown();
+//		executor.execute(loadDataHoaDon);
+//		executor.shutdown();
 	}
 
 	public HeThongQuanLyNhaSach() throws RemoteException, MalformedURLException, NotBoundException {
-		
+
 		// initialization variable DAO
 		nhaXuatBan_DAO = (NhaXuatBan_Impl) Naming.lookup(URL + "nhaXuatBanDAO");
 		theLoaiSach_DAO = (TheLoaiSach_Impl) Naming.lookup(URL + "theLoaiSachDAO");
 		nhaCungCap_DAO = (NhaCungCap_Impl) Naming.lookup(URL + "nhaCungCapDAO");
 		sach_DAO = (Sach_Impl) Naming.lookup(URL + "sachDAO");
 		dungCuHocTap_DAO = (DungCuHocTap_Impl) Naming.lookup(URL + "dungCuHocTapDAO");
-		
+
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
@@ -1225,13 +1225,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 
 		cardLayoutContent = new CardLayout();
 		pContent.setLayout(cardLayoutContent);
-		
+
 		Sach_GUI sach_GUI = new Sach_GUI();
 		DungCuHocTap_GUI dungCuHocTap_GUI = new DungCuHocTap_GUI();
 		NhaXuatBan_GUI nhaXuatBan_GUI = new NhaXuatBan_GUI();
 		TheLoaiSach_GUI theLoaiSach_GUI = new TheLoaiSach_GUI();
 		NhaCungCap_GUI nhaCungCap_GUI = new NhaCungCap_GUI();
-		
+
 		// menu
 		pContent.add(sach_GUI, "Sach_GUI");
 		pContent.add(dungCuHocTap_GUI, "DungCuHocTap_GUI");
@@ -1471,9 +1471,9 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			}
 		});
 		contentPane.add(btnDangNhap);
-		
+
 		ExecutorService executor = Executors.newCachedThreadPool();
-		
+
 		Runnable loadDataSach = () -> {
 			try {
 				sach_GUI.loadData_KhachHang(sach_DAO.getAllSach());
@@ -1481,7 +1481,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-		
+
 		Runnable loadDataDungCuHocTap = () -> {
 			try {
 				dungCuHocTap_GUI.loadData_KhachHang(dungCuHocTap_DAO.getAllDungCuHocTap());
@@ -1489,7 +1489,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-		
+
 		Runnable loadDataNhaXuatBan = () -> {
 			try {
 				nhaXuatBan_GUI.loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
@@ -1497,7 +1497,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-		
+
 		Runnable loadDataTheLoaiSach = () -> {
 			try {
 				theLoaiSach_GUI.loadData(theLoaiSach_DAO.getAllTheLoaiSach());
@@ -1505,7 +1505,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-		
+
 		Runnable loadDataNhaCungCap = () -> {
 			try {
 				nhaCungCap_GUI.loadData(nhaCungCap_DAO.getAllNhaCungCap());
@@ -1513,7 +1513,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				e1.printStackTrace();
 			}
 		};
-		
+
 		executor.execute(loadDataSach);
 		executor.execute(loadDataDungCuHocTap);
 		executor.execute(loadDataNhaXuatBan);

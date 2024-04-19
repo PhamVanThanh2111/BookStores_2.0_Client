@@ -480,7 +480,9 @@ public class DungCuHocTap_GUI extends JPanel {
 							btnlamMoi.setEnabled(true);
 							btnTim.setEnabled(true);
 						}
+
 					});
+
 					desktopPane.add(khoiPhucDuLieu).setVisible(true);
 				}
 			}
