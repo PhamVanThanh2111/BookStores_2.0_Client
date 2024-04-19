@@ -802,7 +802,9 @@ public class NhanVien_GUI extends JPanel {
 				// Thêm tài khoản mới cho nhân viên mới
 				TaiKhoan taiKhoan = new TaiKhoan(txtSoDienThoai.getText());
 				taiKhoan_DAO.themTaiKhoan(taiKhoan);
-
+//				String maNhanVien = taiKhoan_DAO.getMaTaiKhoanMoiNhat();
+//				System.out.println(maNhanVien);
+				
 				NhanVien nhanVien = new NhanVien();
 				nhanVien.setMaNhanVien(taiKhoan.getTaiKhoan());
 				nhanVien.setTenNhanVien(txtTenNhanVien.getText());
@@ -817,7 +819,7 @@ public class NhanVien_GUI extends JPanel {
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setCa(new Ca("C" + cbCa.getSelectedItem()));
 				nhanVien.setHinhAnh(relativePath);
-				nhanVien_DAO.themNhanVien(nhanVien);
+//				nhanVien_DAO.themNhanVien(nhanVien);
 				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
 				refresh();
 				return true;

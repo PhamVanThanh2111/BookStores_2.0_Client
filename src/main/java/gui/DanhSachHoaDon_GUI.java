@@ -402,8 +402,8 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			Object[] objects = {hoaDon.getMaHoaDon(), 
 								hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().getTenKhachHang() : "",
 								hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().getSoDienThoai() : "",
-								nhanVien_DAO.getNhanVienTheoMa(hoaDon.getNhanVien().getMaNhanVien()).getTenNhanVien(), 
-								simpleDateFormat.format(hoaDon.getNgayLap()), 
+								nhanVien_DAO.getNhanVienTheoMaHoaDon(hoaDon.getMaHoaDon()).getTenNhanVien(), 
+								hoaDon.getNgayLap() != null ? simpleDateFormat.format(hoaDon.getNgayLap()) : "", 
 								hoaDon.getThanhTien()};
 			modelDanhSachHoaDon.addRow(objects);
 		}

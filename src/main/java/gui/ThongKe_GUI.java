@@ -50,6 +50,7 @@ import dao.impl.HoaDon_Impl;
 import dao.impl.KhachHang_Impl;
 import dao.impl.NhanVien_Impl;
 import dao.impl.SanPham_Impl;
+import entity.HoaDon;
 import entity.SanPham;
 
 public class ThongKe_GUI extends JPanel {
@@ -107,6 +108,7 @@ public class ThongKe_GUI extends JPanel {
 	private static final String URL = "rmi://PhamVanThanh:9891/";
 	
 	public ThongKe_GUI() throws RemoteException, MalformedURLException, NotBoundException {
+		
 		// khai bao DAO
 		hoaDon_DAO = (HoaDon_Impl) Naming.lookup(URL + "hoaDonDAO");
 		sanPham_DAO = (SanPham_Impl) Naming.lookup(URL + "sanPhamDAO");
@@ -461,6 +463,7 @@ public class ThongKe_GUI extends JPanel {
         });
 		
 		nhanVien_DAO.getTongHoaDonSoLuongNhanVien().forEach((nhanVien, soLuongSanPham) -> {
+<<<<<<< HEAD
             List<HoaDon> hoaDons = null;
             try {
                 hoaDons = hoaDon_DAO.getHoaDonTheoMaNhanVien(nhanVien.getMaNhanVien());
@@ -468,6 +471,15 @@ public class ThongKe_GUI extends JPanel {
                 throw new RuntimeException(e);
             }
             datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(hoaDons.size(), "Hóa đơn", nhanVien.getTenNhanVien());
+=======
+			List<HoaDon> hoaDons = null;
+			try {
+			    hoaDons = hoaDon_DAO.getHoaDonTheoMaNhanVien(nhanVien.getMaNhanVien());
+			} catch (RemoteException e) {
+			    throw new RuntimeException(e);
+			}
+			datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(hoaDons.size(), "Hóa đơn", nhanVien.getTenNhanVien());
+>>>>>>> 9742febd3579d45d03745e780bfa3b76b646e305
 			datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(soLuongSanPham, "Sản phẩm", nhanVien.getTenNhanVien());
 		});
 
@@ -506,7 +518,8 @@ public class ThongKe_GUI extends JPanel {
 	}
 	
 	private double tinhDoanhThuTheoNgay(java.sql.Date date) throws RemoteException {
-		return hoaDon_DAO.getTongDoanhThuTheoNgay(date);
+//		return hoaDon_DAO.getTongDoanhThuTheoNgay(date);
+		return 0.0;
 	}
 	
 	private long tinhSoLuongSanPhamBanDuocTheoNgay(java.sql.Date date) throws RemoteException {
