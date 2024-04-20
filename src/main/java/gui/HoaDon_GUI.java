@@ -743,7 +743,7 @@ public class HoaDon_GUI extends JPanel {
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/main/java/report/hoaDonNV_report.jrxml");
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ConnectDB.getConnection());
 		JasperViewer.viewReport(jasperPrint, false);
-		JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\HoaDon\\" + maHoaDon + ".pdf");
+//		JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\HoaDon\\" + maHoaDon + ".pdf");
 	}
 
 	private void lamMoi() {

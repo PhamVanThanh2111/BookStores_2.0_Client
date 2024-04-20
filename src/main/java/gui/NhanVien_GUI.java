@@ -44,7 +44,6 @@ import javax.swing.table.JTableHeader;
 import com.toedter.calendar.JDateChooser;
 
 import dao.impl.NhanVien_Impl;
-import dao.impl.TaiKhoan_Impl;
 import entity.Ca;
 import entity.NhanVien;
 import entity.TaiKhoan;
@@ -82,14 +81,12 @@ public class NhanVien_GUI extends JPanel {
 	private Border borderDefault;
 
 	private NhanVien_Impl nhanVien_DAO;
-	private TaiKhoan_Impl taiKhoan_DAO;
 
 	private static final String URL = "rmi://PhamVanThanh:9891/";
 	public NhanVien_GUI() throws RemoteException, MalformedURLException, NotBoundException {
 
 		// khai bao DAO
 		nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
-		taiKhoan_DAO = (TaiKhoan_Impl) Naming.lookup(URL + "taiKhoanDAO");
 
 		ds = new ArrayList<NhanVien>();
 
@@ -813,11 +810,6 @@ public class NhanVien_GUI extends JPanel {
 				nhanVien.setHinhAnh(relativePath);
 				nhanVien_DAO.themNhanVien(nhanVien);
 				
-				// Thêm tài khoản mới cho nhân viên mới
-				TaiKhoan taiKhoan = new TaiKhoan();
-				taiKhoan.setNhanVien(nhanVien);
-				taiKhoan.setMatKhau(txtSoDienThoai.getText());
-				taiKhoan_DAO.themTaiKhoan(taiKhoan);
 				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
 				refresh();
 				return true;
@@ -851,9 +843,7 @@ public class NhanVien_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
-				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0));
 				try {
-					taiKhoan_DAO.xoaTaiKhoan(nhanVien.getMaNhanVien());
 					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
