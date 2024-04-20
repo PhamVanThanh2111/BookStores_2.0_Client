@@ -1037,6 +1037,7 @@ public class DungCuHocTap_GUI extends JPanel {
 					}
 					dungCuHocTap.setNhaCungCap(nhacc);
 					dungCuHocTap.setHinhAnh(relativePath);
+					dungCuHocTap.setTrangThai(true);
 					dungCuHocTap_DAO.themDungCuHocTap(dungCuHocTap);
 					JOptionPane.showMessageDialog(null, "Thêm dụng cụ học tập thành công!");
 				}

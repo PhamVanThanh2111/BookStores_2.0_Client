@@ -210,7 +210,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 					try {
 						int option = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn lập hóa đơn?", "Lập hóa đơn", JOptionPane.YES_NO_OPTION);
 						if (option == JOptionPane.YES_OPTION) {
-							lapHoaDon();
+							lapHoaDon();// note chưa load lại hóa đơn
 						}
 					} catch (JRException | RemoteException | SQLException e1) {
 						e1.printStackTrace();
