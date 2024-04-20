@@ -41,7 +41,6 @@ import com.toedter.calendar.JDateChooser;
 import dao.impl.ChiTietHoaDon_Impl;
 import dao.impl.HoaDon_Impl;
 import dao.impl.KhachHang_Impl;
-import dao.impl.NhanVien_Impl;
 import dao.impl.SanPham_Impl;
 import entity.ChiTietHoaDon;
 import entity.HoaDon;
@@ -67,7 +66,6 @@ public class DanhSachHoaDon_GUI extends JPanel {
     private HoaDon_Impl hoaDon_DAO;
     private ChiTietHoaDon_Impl chiTietHoaDon_DAO;
     private KhachHang_Impl khachHang_DAO;
-    private NhanVien_Impl nhanVien_DAO;
     private SanPham_Impl sanPham_DAO;
 
     private static final String URL = "rmi://PhamVanThanh:9891/";
@@ -77,7 +75,6 @@ public class DanhSachHoaDon_GUI extends JPanel {
         // khai bao DAO
         hoaDon_DAO = (HoaDon_Impl) Naming.lookup(URL + "hoaDonDAO");
         khachHang_DAO = (KhachHang_Impl) Naming.lookup(URL + "khachHangDAO");
-        nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
         chiTietHoaDon_DAO = (ChiTietHoaDon_Impl) Naming.lookup(URL + "chiTietHoaDonDAO");
         sanPham_DAO = (SanPham_Impl) Naming.lookup(URL + "sanPhamDAO");
 

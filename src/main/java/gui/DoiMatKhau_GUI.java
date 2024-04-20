@@ -148,16 +148,14 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 
 	}
 	
-	@SuppressWarnings("deprecation")
 	private boolean trungKhop() {
-		if (pwdMatKhauHienTai.getText().equals(pwdNhapLai.getText())) {
+		if (new String(pwdMatKhauHienTai.getPassword()).equals(new String(pwdNhapLai.getPassword()))) {
 			return true;
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Không trùng khớp với mật khẩu hiện tại!");
 			return false;
 		}
-		
 	}
 	
 	private boolean kiemTraRong() {
@@ -170,7 +168,6 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 		return false;
 	}
 	
-	@SuppressWarnings("deprecation")
 	private boolean doiMatKhau() {
 		if (kiemTraRong()) {
 			JOptionPane.showMessageDialog(null, "Bạn chưa nhập thông tin!");

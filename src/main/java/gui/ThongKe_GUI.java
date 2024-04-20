@@ -50,7 +50,6 @@ import dao.impl.HoaDon_Impl;
 import dao.impl.KhachHang_Impl;
 import dao.impl.NhanVien_Impl;
 import dao.impl.SanPham_Impl;
-import entity.HoaDon;
 import entity.SanPham;
 
 public class ThongKe_GUI extends JPanel {
