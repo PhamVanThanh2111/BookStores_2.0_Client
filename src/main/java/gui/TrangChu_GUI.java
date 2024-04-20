@@ -200,7 +200,7 @@ public class TrangChu_GUI extends JPanel {
 		lblBackGround.setBounds(1010, 110, 267, 590);
 		pnlMain.add(lblBackGround);
 		
-		lblSoLuongGiaoDichValue.setText(hoaDon_DAO.getHoaDonTheoMaNhanVien(nhanVien.getMaNhanVien()).size() + "");
+		lblSoLuongGiaoDichValue.setText(hoaDon_DAO.getHoaDonTheoNhanVienNgayHienTai(nhanVien.getMaNhanVien()).size() + "");
 		lblTongThuValue.setText(tinhDoanhThuNhanVienTrongNgay(nhanVien) + " VND");
 	}
 	

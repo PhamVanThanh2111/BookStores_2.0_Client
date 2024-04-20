@@ -52,7 +52,6 @@ import entity.NhanVien;
 import entity.SanPham;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -708,10 +707,9 @@ public class HoaDon_GUI extends JPanel {
 	
 	private void lapHoaDon(String maNhanVien) throws SQLException, JRException, RemoteException {
 		HoaDon hoaDon = new HoaDon();
-		if (khachHang == null) {
-			khachHang = new KhachHang();
+		if (khachHang != null) {
+			hoaDon.setKhachHang(khachHang);
 		}
-		hoaDon.setKhachHang(khachHang);
 		hoaDon.setNhanVien(nhanVien_DAO.getNhanVienTheoMa(maNhanVien));
 		hoaDon.setNgayLap(Date.valueOf(LocalDate.now()));
 		hoaDon.setThanhTien(tinhThanhTien());
@@ -747,6 +745,7 @@ public class HoaDon_GUI extends JPanel {
 	}
 
 	private void lamMoi() {
+		khachHang = null;
 		txtMaKhachHang.setText("");
 		txtTenKhachHang.setText("");
 		txtSoDienThoai.setText("");

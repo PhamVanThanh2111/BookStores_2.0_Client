@@ -445,21 +445,21 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblIconDangXuat.setBackground(new Color(39, 63, 96));
 			}
 
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
-//						JOptionPane.YES_NO_OPTION);
-//				if (option == JOptionPane.YES_OPTION) {
-//					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
-//					try {
-//						heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
-//						heThongQuanLyNhaSach.setVisible(true);
-//					} catch (RemoteException | MalformedURLException | NotBoundException e1) {
-//						e1.printStackTrace();
-//					}
-//					setVisible(false);
-//				}
-//			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
+					try {
+						heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+						heThongQuanLyNhaSach.setVisible(true);
+					} catch (RemoteException | MalformedURLException | NotBoundException e1) {
+						e1.printStackTrace();
+					}
+					setVisible(false);
+				}
+			}
 		});
 		pMenu2.add(lblDangXuat);
 
