@@ -22,7 +22,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import dao.impl.NhanVien_Impl;
 import dao.impl.TaiKhoan_Impl;
+import entity.NhanVien;
 import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
 import javax.swing.JCheckBox;
@@ -42,12 +44,13 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private JCheckBox chkShow;
 	
 	private TaiKhoan_Impl taiKhoan_DAO;
+	private NhanVien_Impl nhanVien_DAO;
 	
 	private static final String URL = "rmi://PhamVanThanh:9891/";
 
 	public DangNhap_GUI() throws SQLException, RemoteException, MalformedURLException, NotBoundException {
 
-		
+		nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
 		taiKhoan_DAO = (TaiKhoan_Impl) Naming.lookup(URL + "taiKhoanDAO");
 
 		getContentPane().setLayout(null);
@@ -210,9 +213,9 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			System.exit(0);
 		} else {
 			String maTaiKhoan = txtUser.getText().trim();
-			@SuppressWarnings("deprecation")
-			String matKhau = txtPwd.getText().toString().trim();
-			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(maTaiKhoan);
+			String matKhau = new String(txtPwd.getPassword());
+			NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoMa(maTaiKhoan);
+			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(nhanVien.getMaNhanVien());
 			if (taiKhoan.getNhanVien() == null) {
 				JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
 				countSaiMatKhau++;

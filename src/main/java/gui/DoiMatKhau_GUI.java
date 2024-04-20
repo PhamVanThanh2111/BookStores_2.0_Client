@@ -197,11 +197,11 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 						"Đổi mật khẩu?", "Đổi mật khẩu",
 						JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
-					if (Regular_expression.validatePassword(pwdMatKhauMoi.getText())) {
+					if (Regular_expression.validatePassword(new String(pwdMatKhauMoi.getPassword()))) {
 						try {
 							TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(nhanVien.getMaNhanVien());
-							if (taiKhoan.getMatKhau().equals(pwdMatKhauHienTai.getText())) {
-								taiKhoan.setMatKhau(pwdMatKhauMoi.getText());
+							if (taiKhoan.getMatKhau().equals(new String(pwdMatKhauHienTai.getPassword()))) {
+								taiKhoan.setMatKhau(new String(pwdMatKhauMoi.getPassword()));
 								taiKhoan_DAO.suaTaiKhoan(taiKhoan);
 								JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
 								setClosable(true);
