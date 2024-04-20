@@ -843,21 +843,22 @@ public class NhanVien_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
-				try {
-					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
-					return false;
-				}
-				JOptionPane.showMessageDialog(null,
-						"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
-				refresh();
-				return true;
+					if (nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString())) {
+						JOptionPane.showMessageDialog(null,
+								"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
+						refresh();
+						return true;
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
+						return false;
+					}
 			} else {
 				return false;
 			}
 		}
 	}
+	
 	@SuppressWarnings("deprecation")
 	private boolean update() throws RemoteException {
 		if (kiemTraRong()) {

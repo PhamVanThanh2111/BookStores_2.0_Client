@@ -417,7 +417,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 						} else {
 							try {
 								xoaKhachHang();
-							} catch (SQLException e1) {
+							} catch (SQLException | RemoteException e1) {
 								e1.printStackTrace();
 							}
 						}
@@ -527,19 +527,17 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	private void xoaKhachHang() throws SQLException {
+	private void xoaKhachHang() throws SQLException, RemoteException {
 		int row = table.getSelectedRow();
 		if (row != -1) {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa khách hàng?", "Delete",
 					JOptionPane.YES_NO_OPTION);
 			if (tb == JOptionPane.YES_OPTION) {
-				try {
-					khachHang_DAO.xoaKhachHangTheoMa((String) model.getValueAt(row, 1));
+				if (khachHang_DAO.xoaKhachHangTheoMa((String) model.getValueAt(row, 1))) {
 					JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công!");
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Khách hàng đang có thông tin trong hóa đơn!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Không được xóa khách hàng này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của khách hàng này!");
 				}
-
 			}
 		}
 	}

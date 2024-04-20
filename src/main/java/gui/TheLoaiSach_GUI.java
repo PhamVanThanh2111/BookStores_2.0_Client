@@ -704,17 +704,15 @@ public class TheLoaiSach_GUI extends JPanel {
 					"Bạn có chắc muốn xóa thể loại sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
-				try {
-					theLoaiSach_DAO.xoaTheLoaiSachTheoMa(model.getValueAt(row, 0).toString());
-				} catch (Exception e) {
+				if (theLoaiSach_DAO.xoaTheLoaiSachTheoMa(model.getValueAt(row, 0).toString())) {
+					JOptionPane.showMessageDialog(null, "Xóa thể loại sách '" + model.getValueAt(row, 0) + "' thành công!");
+					refresh();
+					return true;
+				} else {
 					JOptionPane.showMessageDialog(null,
-							"Không được xóa thể loại sách này. Bởi vì sẽ mất toàn bộ dữ liệu sách và nhà xuất bản của thể loại sách này!");
+							"Không được xóa thể loại sách này. Bởi vì sẽ mất toàn bộ dữ liệu sách của thể loại sách này!");
 					return false;
 				}
-				// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
-				JOptionPane.showMessageDialog(null, "Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
-				refresh();
-				return true;
 			} else {
 				return false;
 			}

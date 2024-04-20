@@ -858,16 +858,15 @@ public class NhaXuatBan_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
-				try {
-					nhaXuatBan_DAO.xoaNhaXuatBanTheoMa(model.getValueAt(row, 0).toString());
-				} catch (Exception e) {
+				if (nhaXuatBan_DAO.xoaNhaXuatBanTheoMa(model.getValueAt(row, 0).toString())) {
+					JOptionPane.showMessageDialog(null, "Xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' thành công!");
+					refresh();
+					return true;
+				} else {
 					JOptionPane.showMessageDialog(null,
 							"Không được xóa nhà xuất bản này. Bởi vì sẽ mất toàn bộ dữ liệu sách của nhà xuất bản này!");
 					return false;
 				}
-				JOptionPane.showMessageDialog(null, "Xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' thành công!");
-				refresh();
-				return true;
 			} else {
 				return false;
 			}

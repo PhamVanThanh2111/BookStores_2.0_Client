@@ -695,10 +695,14 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Nhà Cung Cấp ? ", "Delete",
 					JOptionPane.YES_NO_OPTION);
 			if (tb == JOptionPane.YES_OPTION) {
-				nhaCungCap_DAO.xoaNhaCungCapTheoMa((String) model.getValueAt(row, 0));
-				JOptionPane.showMessageDialog(null, "Xóa Thành Công");
-				loadData(nhaCungCap_DAO.getAllNhaCungCap());
-				return true;
+				if (nhaCungCap_DAO.xoaNhaCungCapTheoMa((String) model.getValueAt(row, 0))) {
+					JOptionPane.showMessageDialog(null, "Xóa thành công!");
+					loadData(nhaCungCap_DAO.getAllNhaCungCap());
+					return true;
+				} else {
+					JOptionPane.showMessageDialog(null, "Không được xóa nhà cung cấp này. Bởi vì sẽ mất toàn bộ dữ liệu dụng cụ học tập của nhà cung cấp này!");
+					return false;
+				}
 			}
 		}
 		return false;
