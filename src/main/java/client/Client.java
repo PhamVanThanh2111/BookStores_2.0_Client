@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.swing.UIManager;
 
@@ -31,8 +32,25 @@ public class Client {
 		}
 
 //		HoaDon_Impl hoaDon_DAO = (HoaDon_Impl) Naming.lookup(URL + "hoaDonDAO");
-//		KhachHang_Impl khachHang_DAO = (KhachHang_Impl) Naming.lookup(URL + "khachHangDAO");
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,14))));
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,15))));
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,16))));
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,17))));
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,18))));
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,19))));
+//		System.out.println(hoaDon_DAO.getTongDoanhThuTheoNgay(Date.valueOf(LocalDate.of(2024,04,20))));
+//		List<HoaDon> hoaDons = hoaDon_DAO.getAllHoaDon();
+//		hoaDons.forEach(hoaDon -> System.out.println(hoaDon.getMaHoaDon()+"-----"+hoaDon.getNhanVien().getMaNhanVien()+"----"+hoaDon.getNhanVien().getTenNhanVien()));
+//		select nv from hoadon.nv where hoadon.id = id
+		//nv.cua
+//		nv-ch n-1
+
+//		//		KhachHang_Impl khachHang_DAO = (KhachHang_Impl) Naming.lookup(URL + "khachHangDAO");
 //		NhanVien_Impl nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
+//		NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoMa("NV0001");
+//		nhanVien.getHoaDons().forEach(hd -> {
+//			System.out.println(hd.getMaHoaDon());
+//		});
 //		ChiTietHoaDon_Impl chiTietHoaDon_DAO = (ChiTietHoaDon_Impl) Naming.lookup(URL + "chiTietHoaDonDAO");
 //		SanPham_Impl sanPham_Impl = (SanPham_Impl) Naming.lookup(URL + "sanPhamDAO");
 //		TaiKhoan_Impl taiKhoan_DAO = (TaiKhoan_Impl) Naming.lookup(URL + "taiKhoanDAO");

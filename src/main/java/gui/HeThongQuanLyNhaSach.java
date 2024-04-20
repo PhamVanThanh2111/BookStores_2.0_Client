@@ -14,6 +14,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -36,6 +39,7 @@ import dao.impl.NhanVien_Impl;
 import dao.impl.PhieuDatHang_Impl;
 import dao.impl.Sach_Impl;
 import dao.impl.TheLoaiSach_Impl;
+import entity.HoaDon;
 import entity.NhanVien;
 
 public class HeThongQuanLyNhaSach extends JFrame {
@@ -1093,7 +1097,8 @@ public class HeThongQuanLyNhaSach extends JFrame {
 
 		Runnable loadDataHoaDon = () -> {
 			try {
-				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
+				List< HoaDon> hoaDons = hoaDon_DAO.getAllHoaDon();
+				danhSachHoaDon_GUI.loadData(hoaDons);
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
@@ -1108,8 +1113,17 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		executor.execute(loadDataNhaXuatBan_NhanVien);
 		executor.execute(loadDataDungCuHocTap_NhanVien);
 		executor.execute(loadDataNhaCungCap_NhanVien);
-		executor.execute(loadDataHoaDon);
-		executor.shutdown();
+		Timer timer = new Timer();/*note*/
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				executor.execute(loadDataHoaDon);
+				executor.shutdown();
+				// Hành động bạn muốn thực hiện sau một khoảng thời gian
+			}
+		};
+		timer.schedule(task, 1000);
+
 	}
 
 	public HeThongQuanLyNhaSach() throws RemoteException, MalformedURLException, NotBoundException {

@@ -507,8 +507,7 @@ public class ThongKe_GUI extends JPanel {
 	}
 	
 	private double tinhDoanhThuTheoNgay(java.sql.Date date) throws RemoteException {
-//		return hoaDon_DAO.getTongDoanhThuTheoNgay(date);
-		return 0.0;
+		return hoaDon_DAO.getTongDoanhThuTheoNgay(date);
 	}
 	
 	private long tinhSoLuongSanPhamBanDuocTheoNgay(java.sql.Date date) throws RemoteException {
