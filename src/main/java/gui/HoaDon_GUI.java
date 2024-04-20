@@ -731,17 +731,16 @@ public class HoaDon_GUI extends JPanel {
 			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
 			sanPham_DAO.banSanPham(sanPham.getMaSanPham(), soLuong);
 		}
-//		xemHoaDon(hoaDon.getMaHoaDon());
+		xemHoaDon(hoaDon.getMaHoaDon());
 		danhSachHoaDon_GUI.refresh();
 		thongKe_GUI.showAllChart();
 		trangChu_GUI.refresh();
 	}
 	
-	@SuppressWarnings("unused")
 	private void xemHoaDon(String maHoaDon) throws JRException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("maPhieu", maHoaDon);
-		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
+		JasperReport jasperReport = JasperCompileManager.compileReport("src/main/java/report/hoaDonNV_report.jrxml");
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ConnectDB.getConnection());
 		JasperViewer.viewReport(jasperPrint, false);
 		JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\HoaDon\\" + maHoaDon + ".pdf");

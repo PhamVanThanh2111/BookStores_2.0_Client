@@ -22,9 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import dao.impl.NhanVien_Impl;
 import dao.impl.TaiKhoan_Impl;
-import entity.NhanVien;
 import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
 import javax.swing.JCheckBox;
@@ -44,7 +42,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private JCheckBox chkShow;
 	
 	private TaiKhoan_Impl taiKhoan_DAO;
-	private NhanVien_Impl nhanVien_DAO;
 	
 	private static final String URL = "rmi://PhamVanThanh:9891/";
 
@@ -52,7 +49,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 
 		
 		taiKhoan_DAO = (TaiKhoan_Impl) Naming.lookup(URL + "taiKhoanDAO");
-		nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
 
 		getContentPane().setLayout(null);
 		setTitle("Login");
@@ -85,7 +81,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if (chkShow.isSelected()) {
 					txtPwd.setEchoChar((char) 0);
 				} else {
@@ -218,15 +213,14 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			@SuppressWarnings("deprecation")
 			String matKhau = txtPwd.getText().toString().trim();
 			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(maTaiKhoan);
-			if (taiKhoan.getTaiKhoan() == null) {
+			if (taiKhoan.getNhanVien() == null) {
 				JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
 				countSaiMatKhau++;
 			} else if (!taiKhoan.getMatKhau().equals(matKhau)) {
 				JOptionPane.showMessageDialog(null, "Mật khẩu không đúng!");
 				countSaiMatKhau++;
 			} else {
-				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
-				HeThongQuanLyNhaSach trangChu_GUI = new HeThongQuanLyNhaSach(nhanVien);
+				HeThongQuanLyNhaSach trangChu_GUI = new HeThongQuanLyNhaSach(taiKhoan.getNhanVien());
 				trangChu_GUI.setVisible(true);
 				this.setVisible(false);
 			}

@@ -799,14 +799,7 @@ public class NhanVien_GUI extends JPanel {
 				return false;
 			}
 			else {
-				// Thêm tài khoản mới cho nhân viên mới
-				TaiKhoan taiKhoan = new TaiKhoan(txtSoDienThoai.getText());
-				taiKhoan_DAO.themTaiKhoan(taiKhoan);
-//				String maNhanVien = taiKhoan_DAO.getMaTaiKhoanMoiNhat();
-//				System.out.println(maNhanVien);
-				
 				NhanVien nhanVien = new NhanVien();
-				nhanVien.setMaNhanVien(taiKhoan.getTaiKhoan());
 				nhanVien.setTenNhanVien(txtTenNhanVien.getText());
 				nhanVien.setDiaChi(txtDiaChi.getText());
 				nhanVien.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
@@ -816,15 +809,19 @@ public class NhanVien_GUI extends JPanel {
 				nhanVien.setEmail(txtEmail.getText());
 				nhanVien.setSoDienThoai(txtSoDienThoai.getText());
 				nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
-				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setCa(new Ca("C" + cbCa.getSelectedItem()));
 				nhanVien.setHinhAnh(relativePath);
-//				nhanVien_DAO.themNhanVien(nhanVien);
+				nhanVien_DAO.themNhanVien(nhanVien);
+				
+				// Thêm tài khoản mới cho nhân viên mới
+				TaiKhoan taiKhoan = new TaiKhoan();
+				taiKhoan.setNhanVien(nhanVien);
+				taiKhoan.setMatKhau(txtSoDienThoai.getText());
+				taiKhoan_DAO.themTaiKhoan(taiKhoan);
 				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
 				refresh();
 				return true;
 			}
-
 		}
 	}
 	
@@ -854,11 +851,10 @@ public class NhanVien_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
-				String maTaiKhoan = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0))
-						.getTaiKhoan().getTaiKhoan();
+				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0));
 				try {
+					taiKhoan_DAO.xoaTaiKhoan(nhanVien.getMaNhanVien());
 					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
-					taiKhoan_DAO.xoaTaiKhoan(maTaiKhoan);
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
 					return false;

@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>iuh.fit</groupId>
-  <artifactId>BookStores_2.0_Client</artifactId>
+  <artifactId>Client_1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
@@ -45,23 +45,11 @@
 			<version>11.2.3.jre17</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.10.2</version>
-			<scope>compile</scope>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
 		</dependency>
-      <dependency>
-          <groupId>BookStores</groupId>
-          <artifactId>0</artifactId>
-          <version>0.0.1-SNAPSHOT</version>
-          <scope>compile</scope>
-      </dependency>
   </dependencies>
 </project>

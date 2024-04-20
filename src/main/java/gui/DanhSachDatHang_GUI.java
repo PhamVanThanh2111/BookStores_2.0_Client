@@ -442,7 +442,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			
 			// xóa phiếu đặt hàng
 			phieuDatHang_DAO.xoaPhieuDatHangTheoMa(phieuDatHang.getMaPhieuDatHang());
-//			xuatHoaDon(hoaDon.getMaHoaDon());
+			xuatHoaDon(hoaDon.getMaHoaDon());
 			JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
 			refresh();
 			return true;
@@ -453,12 +453,10 @@ public class DanhSachDatHang_GUI extends JPanel {
 		}
 	}
 	
-	
-	@SuppressWarnings("unused")
 	private void xuatHoaDon(String ma)  {
 		try {
 			Hashtable<String, Object> map = new Hashtable<String, Object>();
-			JasperReport  jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
+			JasperReport  jasperReport = JasperCompileManager.compileReport("src/main/java/report/hoaDonNV_report.jrxml");
 			
 			map.put("maPhieu",ma);
 			

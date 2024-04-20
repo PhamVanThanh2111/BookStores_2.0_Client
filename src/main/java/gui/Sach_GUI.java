@@ -1252,6 +1252,7 @@ public class Sach_GUI extends JPanel {
 					sach.setTacGia(txtTacGia.getText());
 					sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
 					sach.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+					sach.setTrangThai(true);
 					sach_DAO.themSach(sach);
 					JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
 					refresh();
@@ -1357,6 +1358,7 @@ public class Sach_GUI extends JPanel {
 				sach.setTacGia(txtTacGia.getText());
 				sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
 				sach.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+				sach.setTrangThai(true);
 				sach_DAO.suaSach(sach);
 				JOptionPane.showMessageDialog(null, "Sửa thành công sách '" + model.getValueAt(row, 0) + "'!");
 				refresh();

@@ -31,11 +31,11 @@ public class Client {
 		}
 
 //		HoaDon_Impl hoaDon_DAO = (HoaDon_Impl) Naming.lookup(URL + "hoaDonDAO");
-////		KhachHang_Impl khachHang_DAO = (KhachHang_Impl) Naming.lookup(URL + "khachHangDAO");
-////		NhanVien_Impl nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
-////		ChiTietHoaDon_Impl chiTietHoaDon_DAO = (ChiTietHoaDon_Impl) Naming.lookup(URL + "chiTietHoaDonDAO");
+//		KhachHang_Impl khachHang_DAO = (KhachHang_Impl) Naming.lookup(URL + "khachHangDAO");
+//		NhanVien_Impl nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
+//		ChiTietHoaDon_Impl chiTietHoaDon_DAO = (ChiTietHoaDon_Impl) Naming.lookup(URL + "chiTietHoaDonDAO");
 //		SanPham_Impl sanPham_Impl = (SanPham_Impl) Naming.lookup(URL + "sanPhamDAO");
-////		TaiKhoan_Impl taiKhoan_DAO = (TaiKhoan_Impl) Naming.lookup(URL + "taiKhoanDAO");
+//		TaiKhoan_Impl taiKhoan_DAO = (TaiKhoan_Impl) Naming.lookup(URL + "taiKhoanDAO");
 //		PhieuDatHang_Impl phieuDatHang_Impl = (PhieuDatHang_Impl) Naming.lookup(URL + "phieuDatHangDAO");
 //		ChiTietPhieuDatHangImpl chiTietPhieuDatHangImpl = (ChiTietPhieuDatHangImpl) Naming.lookup(URL + "chiTietPhieuDatHangDAO");
 //		TaiKhoan taiKhoan = new TaiKhoan();
@@ -50,7 +50,7 @@ public class Client {
 //		});
 		//		String maPhieuDatHang = "PDH0001";
 //		PhieuDatHang phieuDatHang = new PhieuDatHang();
-////		phieuDatHang.setMaPhieuDatHang("PD00001");
+//		phieuDatHang.setMaPhieuDatHang("PD00001");
 //		phieuDatHang.setNhanVien(new NhanVien("NV0002"));
 //		phieuDatHang.setKhachHang(new KhachHang("KH00022"));
 //		phieuDatHang.setNgayLap(Date.valueOf(LocalDate.now()));
@@ -67,5 +67,6 @@ public class Client {
 //		chiTietPhieuDatHang.setSoLuong(12);
 //		chiTietPhieuDatHang.setDonGia(123);
 //		chiTietPhieuDatHangImpl.themChiTietPhieuDatHang(chiTietPhieuDatHang);
+//		System.out.println(taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan("NV0001").getTaiKhoan());
 	}
 }

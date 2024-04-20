@@ -199,9 +199,8 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 				if (option == JOptionPane.YES_OPTION) {
 					if (Regular_expression.validatePassword(pwdMatKhauMoi.getText())) {
 						try {
-							if (taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(nhanVien.getTaiKhoan().getTaiKhoan()).getMatKhau().equals(pwdMatKhauHienTai.getText())) {
-								TaiKhoan taiKhoan = new TaiKhoan();
-								taiKhoan.setTaiKhoan(nhanVien.getTaiKhoan().getTaiKhoan());
+							TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(nhanVien.getMaNhanVien());
+							if (taiKhoan.getMatKhau().equals(pwdMatKhauHienTai.getText())) {
 								taiKhoan.setMatKhau(pwdMatKhauMoi.getText());
 								taiKhoan_DAO.suaTaiKhoan(taiKhoan);
 								JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
@@ -212,7 +211,6 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 								JOptionPane.showMessageDialog(null, "Mật khẩu hiện tại không đúng!");
 							}
 						} catch (HeadlessException | RemoteException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
