@@ -736,12 +736,15 @@ public class HoaDon_GUI extends JPanel {
 	}
 	
 	private void xemHoaDon(String maHoaDon) throws JRException {
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("maPhieu", maHoaDon);
-		JasperReport jasperReport = JasperCompileManager.compileReport("src/main/java/report/hoaDonNV_report.jrxml");
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ConnectDB.getConnection());
-		JasperViewer.viewReport(jasperPrint, false);
-//		JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\HoaDon\\" + maHoaDon + ".pdf");
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("maPhieu", maHoaDon);
+			JasperReport jasperReport = JasperCompileManager.compileReport("src/main/java/report/hoaDonNV_report.jrxml");
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ConnectDB.getConnection());
+			JasperViewer.viewReport(jasperPrint, false);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void lamMoi() {

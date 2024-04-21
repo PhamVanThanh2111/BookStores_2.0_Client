@@ -43,6 +43,8 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private int countSaiMatKhau = 0;
 	private JCheckBox chkShow;
 	
+	private HeThongQuanLyNhaSach trangChu_GUI;
+	
 	private TaiKhoan_Impl taiKhoan_DAO;
 	private NhanVien_Impl nhanVien_DAO;
 	
@@ -223,9 +225,11 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Mật khẩu không đúng!");
 				countSaiMatKhau++;
 			} else {
-				HeThongQuanLyNhaSach trangChu_GUI = new HeThongQuanLyNhaSach(taiKhoan.getNhanVien());
-				trangChu_GUI.setVisible(true);
-				this.setVisible(false);
+				if (trangChu_GUI == null) {
+					trangChu_GUI = new HeThongQuanLyNhaSach(taiKhoan.getNhanVien());
+					trangChu_GUI.setVisible(true);
+					this.setVisible(false);
+				}
 			}
 		}
 	}

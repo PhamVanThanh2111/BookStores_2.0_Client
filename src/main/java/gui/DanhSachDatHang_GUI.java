@@ -470,6 +470,5 @@ public class DanhSachDatHang_GUI extends JPanel {
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
