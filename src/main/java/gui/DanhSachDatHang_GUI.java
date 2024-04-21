@@ -64,15 +64,19 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private ChiTietHoaDon_Impl chiTietHoaDon_DAO;
 	private SanPham_Impl sanPham_DAO;
 	
+	private DanhSachHoaDon_GUI danhSachHoaDon_GUI;
+	
 	private static final String URL = "rmi://PhamVanThanh:9891/";
 	
-	public DanhSachDatHang_GUI() throws RemoteException, MalformedURLException, NotBoundException {
+	public DanhSachDatHang_GUI(DanhSachHoaDon_GUI danhSachHoaDon_GUI) throws RemoteException, MalformedURLException, NotBoundException {
 		// declare variables DAO
 		phieuDatHang_DAO = (PhieuDatHang_Impl) Naming.lookup(URL + "phieuDatHangDAO");
 		chiTietPhieuDatHang_DAO = (ChiTietPhieuDatHangImpl) Naming.lookup(URL + "chiTietPhieuDatHangDAO");
 		hoaDon_DAO = (HoaDon_Impl) Naming.lookup(URL + "hoaDonDAO");
 		chiTietHoaDon_DAO = (ChiTietHoaDon_Impl) Naming.lookup(URL + "chiTietHoaDonDAO");
 		sanPham_DAO = (SanPham_Impl) Naming.lookup(URL + "sanPhamDAO");
+		
+		this.danhSachHoaDon_GUI = danhSachHoaDon_GUI;
 		
 		setLayout(null);
 		
@@ -350,6 +354,8 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTien.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTien.setBounds(360, 550, 150, 40);
 		pThongTinChiTiet.add(lblTien);
+		
+		danhSachHoaDon_GUI.refresh();
 	}
 	
 	public void loadData(List<PhieuDatHang> danhSachPhieuDatHangs) throws RemoteException {
@@ -445,6 +451,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
 			xuatHoaDon(hoaDon.getMaHoaDon());
 			refresh();
+			danhSachHoaDon_GUI.refresh();
 			return true;
 		}
 		else {
