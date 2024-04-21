@@ -149,7 +149,7 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 	}
 	
 	private boolean trungKhop() {
-		if (new String(pwdMatKhauHienTai.getPassword()).equals(new String(pwdNhapLai.getPassword()))) {
+		if (new String(pwdMatKhauMoi.getPassword()).equals(new String(pwdNhapLai.getPassword()))) {
 			return true;
 		}
 		else {
