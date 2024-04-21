@@ -163,17 +163,17 @@ public class HoaDon_GUI extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) { 
-					if (txtSoDienThoai.getText().length() != 10) { // Regular expression
+					if (txtSoDienThoai.getText().trim().length() != 10) { // Regular expression
 						JOptionPane.showMessageDialog(null, "Số điện thoại phải đủ 10 số!");
 						lamMoi();
 					}
-					else if (!Regular_expression.validatePhoneNumber(txtSoDienThoai.getText())) {
+					else if (!Regular_expression.validatePhoneNumber(txtSoDienThoai.getText().trim())) {
 						JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ!");
 						lamMoi();
 					}
 					else {
 						try {
-							khachHang = khachHang_DAO.getKhachHangTheoSoDienThoai(txtSoDienThoai.getText());
+							khachHang = khachHang_DAO.getKhachHangTheoSoDienThoai(txtSoDienThoai.getText().trim());
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
