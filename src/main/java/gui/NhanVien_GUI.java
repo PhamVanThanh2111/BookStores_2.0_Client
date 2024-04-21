@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -78,16 +79,19 @@ public class NhanVien_GUI extends JPanel {
 	private TimKiemNhanVien_GUI timNhanVien_GUI;
 	private JDesktopPane desktopPane;
 	private ArrayList<NhanVien> ds;
+	private NhanVien nhanVien;
 	private Border borderDefault;
 
 	private NhanVien_Impl nhanVien_DAO;
 
 	private static final String URL = "rmi://PhamVanThanh:9891/";
-	public NhanVien_GUI() throws RemoteException, MalformedURLException, NotBoundException {
+	public NhanVien_GUI(NhanVien nhanVien) throws RemoteException, MalformedURLException, NotBoundException {
 
 		// khai bao DAO
 		nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
 
+		this.nhanVien = nhanVien;
+		
 		ds = new ArrayList<NhanVien>();
 
 		setLayout(null);
@@ -251,7 +255,7 @@ public class NhanVien_GUI extends JPanel {
 				NhanVien nhanVien;
 				try {
 					nhanVien = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString());
-					lblHinhAnh.setIcon(new ImageIcon(NhanVien_GUI.class.getResource(nhanVien.getHinhAnh())));
+					lblHinhAnh.setIcon(resizeImage(new ImageIcon(NhanVien_GUI.class.getResource(nhanVien.getHinhAnh()))));
 					relativePath = nhanVien.getHinhAnh();
 					txtTenNhanVien.setText(nhanVien.getTenNhanVien());
 					lblChucVu.setText(nhanVien.getChucVu());
@@ -843,15 +847,20 @@ public class NhanVien_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
-					if (nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString())) {
-						JOptionPane.showMessageDialog(null,
-								"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
-						refresh();
-						return true;
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
+					if (model.getValueAt(row, 0).toString().equals(nhanVien.getMaNhanVien())) {
+						JOptionPane.showMessageDialog(null, "Bạn không thể xóa chính mình!");
 						return false;
+					} else {
+						if (nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString())) {
+							JOptionPane.showMessageDialog(null,
+									"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
+							refresh();
+							return true;
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
+							return false;
+						}
 					}
 			} else {
 				return false;
@@ -950,7 +959,7 @@ public class NhanVien_GUI extends JPanel {
 							.getTaiKhoan();
 					Date ngayVaoLam = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString())
 							.getNgayVaoLam();
-					Date ngaySinh = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString()).getNgaySinh();
+					Date ngaySinh = new Date(dateChooserNgaySinh.getDate().getTime());
 					NhanVien nhanVien = new NhanVien(lblMaNhanVienValue.getText(), txtTenNhanVien.getText(), txtDiaChi.getText(),
 						cbGioiTinh.getSelectedItem().toString(), ngaySinh, ngayVaoLam, txtcCCD.getText(),
 								txtEmail.getText(), txtSoDienThoai.getText(), cbChucVu.getSelectedItem().toString(),
@@ -1090,5 +1099,11 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setText("");
 		cbGioiTinh.setSelectedIndex(-1);
 		txtDiaChi.setText("");
+	}
+	
+	private ImageIcon resizeImage(ImageIcon imageIcon) {
+		Image image = imageIcon.getImage();
+		Image newImage = image.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+		return new ImageIcon(newImage);
 	}
 }

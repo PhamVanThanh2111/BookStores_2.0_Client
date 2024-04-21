@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -102,7 +103,7 @@ public class HoSo_GUI extends JPanel {
 		lblAnh.setBounds(40, 30, 256, 256);
 		Border border = BorderFactory.createLineBorder(Color.BLACK,1);
 		lblAnh.setBorder(border);
-		lblAnh.setIcon(new ImageIcon(NhanVien_GUI.class.getResource(nhanVien.getHinhAnh().substring(0, nhanVien.getHinhAnh().lastIndexOf(".")) + "_hoso.png/")));
+		lblAnh.setIcon(resizeImage(new ImageIcon(HoSo_GUI.class.getResource(nhanVien.getHinhAnh()))));
 		pnlMain.add(lblAnh);
 		
 		JLabel lblThongTinCaNhan = new JLabel("Thông Tin Cá Nhân");
@@ -235,5 +236,11 @@ public class HoSo_GUI extends JPanel {
 		lblCS.setBounds(935, 250, 153, 40);
 		pnlMain.add(lblCS);
 
+	}
+	
+	private ImageIcon resizeImage(ImageIcon imageIcon) {
+		Image image = imageIcon.getImage();
+		Image newImage = image.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+		return new ImageIcon(newImage);
 	}
 }

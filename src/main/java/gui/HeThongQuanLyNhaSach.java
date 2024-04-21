@@ -386,7 +386,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();
 		trangChu_GUI = new TrangChu_GUI(nhanVien);
-		nhanVien_GUI = new NhanVien_GUI();
+		nhanVien_GUI = new NhanVien_GUI(nhanVien);
 		khachHang_GUI = new KhachHang_GUI();
 		sach_GUI_NhanVien = new Sach_GUI(nhanVien);
 		dungCuHocTap_GUI_NhanVien = new DungCuHocTap_GUI(nhanVien);

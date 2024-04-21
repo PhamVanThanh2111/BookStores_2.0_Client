@@ -19,7 +19,6 @@ import javax.swing.border.LineBorder;
 
 import dao.impl.Ca_Impl;
 import dao.impl.HoaDon_Impl;
-import dao.impl.NhanVien_Impl;
 import entity.HoaDon;
 import entity.NhanVien;
 
@@ -32,7 +31,6 @@ public class TrangChu_GUI extends JPanel {
 	private JLabel lblTongThuValue;
 	private Ca_Impl ca_DAO;
 	private HoaDon_Impl hoaDon_DAO;
-	private NhanVien_Impl nhanVien_DAO;
 	private JLabel lblThoiGianValue;
 	private JLabel lblTieuDe;
 	private NhanVien nhanVien;
@@ -42,7 +40,6 @@ public class TrangChu_GUI extends JPanel {
 	public TrangChu_GUI(NhanVien nhanVien) throws RemoteException, MalformedURLException, NotBoundException {
 		ca_DAO = (Ca_Impl) Naming.lookup(URL + "caDAO");
 		hoaDon_DAO = (HoaDon_Impl) Naming.lookup(URL + "hoaDonDAO");
-		nhanVien_DAO = (NhanVien_Impl) Naming.lookup(URL + "nhanVienDAO");
 		this.nhanVien = nhanVien;
 		
 		setLayout(null);
@@ -207,7 +204,6 @@ public class TrangChu_GUI extends JPanel {
 	private double tinhDoanhThuNhanVienTrongNgay(NhanVien nhanVien) throws RemoteException {
 		List<HoaDon> hoaDonList = hoaDon_DAO.getHoaDonTheoNhanVienNgayHienTai(nhanVien.getMaNhanVien());
 		return hoaDonList.stream().map(hoaDon -> hoaDon.getThanhTien()).reduce(0.0F, (a, b) -> a + b);
-		/*nhanVien_DAO.getDoanhThuNhanVienTheoNgay(nhanVien.getMaNhanVien(), new Date(new java.util.Date().getTime()));*/
 	}
 	
 	public void refresh() throws RemoteException {
