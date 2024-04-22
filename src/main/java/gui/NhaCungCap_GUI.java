@@ -218,7 +218,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		
-		closeFocusTXT();
+		closeFocus();
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -498,7 +498,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		tableHeader.setReorderingAllowed(false);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		closeFocusTXT();
+		closeFocus();
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -628,7 +628,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	public void openFocusTXT() {
+	private void openFocus() {
 		txtTenNhaCungCap.setFocusable(true);
 		txtEmail.setFocusable(true);
 		txtSDT.setFocusable(true);
@@ -645,7 +645,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBorder(borderDefault);
 	}
 
-	public void closeFocusTXT() {
+	private void closeFocus() {
 		txtTenNhaCungCap.setFocusable(false);
 		txtEmail.setFocusable(false);
 		txtSDT.setFocusable(false);
@@ -663,15 +663,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 
 	}
 
-	public void xoaTrang() {
-		txtTenNhaCungCap.setText("");
-		txtSDT.setText("");
-		txtDiaChi.setText("");
-		txtEmail.setText("");
-		lblMaNCC.setText("");
-	}
-
-	public void themNhaCungCap() throws SQLException, RemoteException {
+	private void themNhaCungCap() throws SQLException, RemoteException {
 		if (txtTenNhaCungCap.getText().equalsIgnoreCase("") || txtSDT.getText().equalsIgnoreCase("")
 				|| txtEmail.getText().equalsIgnoreCase("") || txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông tin rỗng!");
@@ -689,7 +681,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	public boolean xoaNhaCungCap() throws RemoteException {
+	private boolean xoaNhaCungCap() throws RemoteException {
 		int row = table.getSelectedRow();
 		if (row != -1) {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Nhà Cung Cấp ? ", "Delete",
@@ -708,7 +700,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		return false;
 	}
 
-	public void suaNhaCungCap() throws SQLException, RemoteException {
+	private void suaNhaCungCap() throws SQLException, RemoteException {
 		if (txtTenNhaCungCap.getText().equalsIgnoreCase("") || txtSDT.getText().equalsIgnoreCase("")
 				|| txtEmail.getText().equalsIgnoreCase("") || txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
@@ -738,7 +730,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			if (btnThem.getText().equalsIgnoreCase("Thêm")) {
 				btnTim.setEnabled(false);
 				btnSua.setEnabled(false);
-				openFocusTXT();
+				openFocus();
 				btnThem.setText("Xác Nhận");
 				btnXoa.setText("Hủy");
 
@@ -746,7 +738,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 				if (btnThem.getText().equalsIgnoreCase("Xác Nhận")) {
 					btnTim.setEnabled(true);
 					btnSua.setEnabled(true);
-					closeFocusTXT();
+					closeFocus();
 					btnThem.setText("Thêm");
 					btnXoa.setText("Xóa");
 					try {
@@ -765,7 +757,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 					btnXoa.setText("Xóa");
 					btnTim.setEnabled(true);
 					btnSua.setEnabled(true);
-					closeFocusTXT();
+					closeFocus();
 				} else {
 					if (btnXoa.getText().equalsIgnoreCase("Xóa")) {
 						int r = table.getSelectedRow();
@@ -792,7 +784,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 							btnXoa.setEnabled(false);
 							btnSua.setText("Xác Nhận");
 							btnTim.setText("Hủy");
-							openFocusTXT();
+							openFocus();
 						}
 					} else {
 						if (btnSua.getText().equalsIgnoreCase("Xác Nhận")) {
@@ -809,7 +801,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 								} catch (SQLException | RemoteException e1) {
 									e1.printStackTrace();
 								}
-								closeFocusTXT();
+								closeFocus();
 							}
 						}
 					}
@@ -820,7 +812,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 							btnXoa.setEnabled(true);
 							btnSua.setText("Sửa");
 							btnTim.setText("Tìm");
-							closeFocusTXT();
+							closeFocus();
 						} else {
 							if (btnTim.getText().equalsIgnoreCase("Tìm")) {
 								btnThem.setEnabled(false);

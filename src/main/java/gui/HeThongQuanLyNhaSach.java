@@ -383,7 +383,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pContent.setLayout(cardLayoutContent);
 
 		danhSachHoaDon_GUI = new DanhSachHoaDon_GUI();
-		danhSachDatHang_GUI = new DanhSachDatHang_GUI(danhSachHoaDon_GUI);
+		danhSachDatHang_GUI = new DanhSachDatHang_GUI(danhSachHoaDon_GUI, trangChu_GUI);
 		thongKe_GUI = new ThongKe_GUI();
 		trangChu_GUI = new TrangChu_GUI(nhanVien);
 		nhanVien_GUI = new NhanVien_GUI(nhanVien);

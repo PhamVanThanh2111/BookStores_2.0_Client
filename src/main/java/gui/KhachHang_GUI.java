@@ -361,7 +361,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	public void xoaTrang() {
+	private void clearTextFields() {
 		txtTenKH.setText("");
 		txtDiaChi.setText("");
 		txtSDT.setText("");
@@ -457,7 +457,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 							btnTim.setText("Tìm");
 							btnThem.setEnabled(true);
 							btnXoa.setEnabled(true);
-							xoaTrang();
+							clearTextFields();
 							closeText();
 						} else {
 							if (btnTim.getText().equalsIgnoreCase("Tìm")) {
@@ -542,7 +542,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	public void closeText() {
+	private void closeText() {
 		cbGioiTinh.setEditable(false);
 		cbGioiTinh.setEnabled(false);
 		cbGioiTinh.setBorder(null);
@@ -561,7 +561,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 	}
 
-	public void openText() {
+	private void openText() {
 		txtTenKH.setEditable(true);
 		txtSDT.setEditable(true);
 		cbGioiTinh.setEditable(true);

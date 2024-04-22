@@ -239,7 +239,7 @@ public class TheLoaiSach_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				lamMoi();
+				clearTextFields();
 //				refresh();
 			}
 		});
@@ -476,7 +476,7 @@ public class TheLoaiSach_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				lamMoi();
+				clearTextFields();
 //				refresh();
 			}
 		});
@@ -660,7 +660,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 
 	// làm mới dữ liệu trên bảng
-	public void lamMoi() {
+	private void clearTextFields() {
 		txtMaTheLoaiSach.setText("");
 		txtTenTheLoaiSach.setText("");
 	}
@@ -671,7 +671,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 
 	// Thêm thể loại sách
-	public boolean add() throws RemoteException {
+	private boolean add() throws RemoteException {
 
 		if (txtTenTheLoaiSach.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
@@ -694,7 +694,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 
 	// Xóa thể loại sách
-	public boolean delete() throws RemoteException {
+	private boolean delete() throws RemoteException {
 		int row = table.getSelectedRow();
 		if (row == -1) {
 			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn thể loại sách cần xóa!");
@@ -720,7 +720,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 
 	// Sửa thể loại sách theo mã
-	public boolean update() throws RemoteException {
+	private boolean update() throws RemoteException {
 		int row = table.getSelectedRow();
 		if (row == -1) {
 			JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần sửa!");

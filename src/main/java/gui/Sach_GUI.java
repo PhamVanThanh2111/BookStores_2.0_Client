@@ -715,7 +715,7 @@ public class Sach_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					xuatFile(sach_DAO.getAllSach());
+					exportToExcel(sach_DAO.getAllSach());
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -1174,7 +1174,7 @@ public class Sach_GUI extends JPanel {
 
 	// Thêm sách
 	private boolean add() {
-		if (kiemTraRong()) {
+		if (isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Bạn phải điền đầy đủ thông tin!");
 			return false;
 		} else {
@@ -1271,7 +1271,7 @@ public class Sach_GUI extends JPanel {
 	}
 
 	// Kiểm tra rỗng cho sách
-	private boolean kiemTraRong() {
+	private boolean isEmpty() {
 		if (txtTenSach.getText().equals("") ||
 				txtXuatXu.getText().equals("") ||
 				txtGiaNhap.getText().equals("") ||
@@ -1399,7 +1399,7 @@ public class Sach_GUI extends JPanel {
 			return false;
 	}
 
-	private boolean xuatFile(List<Sach> list) {
+	private boolean exportToExcel(List<Sach> list) {
 		fileChooser = new JFileChooser();
 		int userSelection = fileChooser.showSaveDialog(this);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {

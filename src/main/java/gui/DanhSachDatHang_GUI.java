@@ -65,10 +65,11 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private SanPham_Impl sanPham_DAO;
 	
 	private DanhSachHoaDon_GUI danhSachHoaDon_GUI;
+	private TrangChu_GUI trangChu_GUI;
 	
 	private static final String URL = "rmi://PhamVanThanh:9891/";
 	
-	public DanhSachDatHang_GUI(DanhSachHoaDon_GUI danhSachHoaDon_GUI) throws RemoteException, MalformedURLException, NotBoundException {
+	public DanhSachDatHang_GUI(DanhSachHoaDon_GUI danhSachHoaDon_GUI, TrangChu_GUI trangChu_GUI) throws RemoteException, MalformedURLException, NotBoundException {
 		// declare variables DAO
 		phieuDatHang_DAO = (PhieuDatHang_Impl) Naming.lookup(URL + "phieuDatHangDAO");
 		chiTietPhieuDatHang_DAO = (ChiTietPhieuDatHangImpl) Naming.lookup(URL + "chiTietPhieuDatHangDAO");
@@ -77,6 +78,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		sanPham_DAO = (SanPham_Impl) Naming.lookup(URL + "sanPhamDAO");
 		
 		this.danhSachHoaDon_GUI = danhSachHoaDon_GUI;
+		this.trangChu_GUI = trangChu_GUI;
 		
 		setLayout(null);
 		
@@ -452,6 +454,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			xuatHoaDon(hoaDon.getMaHoaDon());
 			refresh();
 			danhSachHoaDon_GUI.refresh();
+			trangChu_GUI.refresh();
 			return true;
 		}
 		else {
