@@ -240,7 +240,7 @@ public class HoSo_GUI extends JPanel {
 	
 	private ImageIcon resizeImage(ImageIcon imageIcon) {
 		Image image = imageIcon.getImage();
-		Image newImage = image.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+		Image newImage = image.getScaledInstance(256, 256, Image.SCALE_SMOOTH);
 		return new ImageIcon(newImage);
 	}
 }
