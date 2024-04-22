@@ -50,7 +50,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JTextField txtSDT;
 	private JTextField txtDiaChi;
 	private JTableHeader tableHeader;
-	private JButton btnThem, btnXoa, btnSua, btnTim;
+	private JButton btnThem, btnXoa, btnSua, btnTim, btnLamMoi;
 	private JComboBox<String> cbGioiTinh;
 	private JLabel lblMaKhachHang;
 	private Border borderDefault;
@@ -164,7 +164,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnTim.setIcon(new ImageIcon(KhachHang_GUI.class.getResource("/image/HeThong/find_person.png")));
 		pDanhSach.add(btnTim);
 
-		JButton btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi = new JButton("Làm Mới");
 		btnLamMoi.setOpaque(true);
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -361,25 +361,17 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	private void clearTextFields() {
-		txtTenKH.setText("");
-		txtDiaChi.setText("");
-		txtSDT.setText("");
-		cbGioiTinh.setSelectedIndex(-1);
-		txtTenKH.requestFocus();
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
 
 		if (o.equals(btnThem)) {
 			if (btnThem.getText().equalsIgnoreCase("Thêm")) {
-
 				btnThem.setText("Xác Nhận");
 				btnXoa.setText("Hủy");
 				btnSua.setEnabled(false);
 				btnTim.setEnabled(false);
+				btnLamMoi.setEnabled(false);
 				openText();
 
 			} else {
@@ -396,6 +388,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					}
 					btnSua.setEnabled(true);
 					btnTim.setEnabled(true);
+					btnLamMoi.setEnabled(true);
 					btnThem.setText("Thêm");
 					btnXoa.setText("Xóa");
 					closeText();
@@ -404,22 +397,23 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		} else {
 			if (o.equals(btnXoa)) {
 				if (btnXoa.getText().equalsIgnoreCase("Hủy")) {
-					btnThem.setText("Thêm");
 					btnXoa.setText("Xóa");
+					btnThem.setText("Thêm");
+					btnSua.setText("Sửa");
+					btnThem.setEnabled(true);
 					btnSua.setEnabled(true);
 					btnTim.setEnabled(true);
+					btnLamMoi.setEnabled(true);
 					closeText();
 				} else {
-					if (btnXoa.getText().equalsIgnoreCase("Xóa")) {
-						int r = table.getSelectedRow();
-						if (r == -1) {
-							JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
-						} else {
-							try {
-								xoaKhachHang();
-							} catch (SQLException | RemoteException e1) {
-								e1.printStackTrace();
-							}
+					int r = table.getSelectedRow();
+					if (r == -1) {
+						JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
+					} else {
+						try {
+							xoaKhachHang();
+						} catch (SQLException | RemoteException e1) {
+							e1.printStackTrace();
 						}
 					}
 				}
@@ -431,78 +425,68 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					} else {
 						if (btnSua.getText().equalsIgnoreCase("Sửa")) {
 							btnSua.setText("Xác Nhận");
-							btnTim.setText("Hủy");
+							btnXoa.setText("Hủy");
 							btnThem.setEnabled(false);
-							btnXoa.setEnabled(false);
+							btnTim.setEnabled(false);
+							btnLamMoi.setEnabled(false);
 							openText();
 						} else {
-							if (btnSua.getText().equalsIgnoreCase("Xác nhận")) {
-								btnSua.setText("Sửa");
-								btnTim.setText("Tìm");
-								try {
-									suaKhachHang();
-								} catch (Exception e1) {
-									e1.printStackTrace();
-								}
-								closeText();
-								btnThem.setEnabled(true);
-								btnXoa.setEnabled(true);
+							try {
+								suaKhachHang();
+							} catch (Exception e1) {
+								e1.printStackTrace();
 							}
+							btnXoa.setText("Xóa");
+							btnSua.setText("Sửa");
+							btnThem.setEnabled(true);
+							btnTim.setEnabled(true);
+							btnLamMoi.setEnabled(true);
+							closeText();
 						}
 					}
 				} else {
 					if (o.equals(btnTim)) {
-						if (btnTim.getText().equalsIgnoreCase("Hủy")) {
-							btnSua.setText("Sửa");
-							btnTim.setText("Tìm");
-							btnThem.setEnabled(true);
-							btnXoa.setEnabled(true);
-							clearTextFields();
-							closeText();
-						} else {
-							if (btnTim.getText().equalsIgnoreCase("Tìm")) {
-								btnThem.setEnabled(false);
-								btnXoa.setEnabled(false);
-								btnSua.setEnabled(false);
-								if (timKiemKhachHang_GUI == null || timKiemKhachHang_GUI.isClosed()) {
-									try {
-										timKiemKhachHang_GUI = new TimKiemKhachHang_GUI(ds);
-									} catch (RemoteException | MalformedURLException | NotBoundException e1) {
-										e1.printStackTrace();
-									}
-									timKiemKhachHang_GUI.addInternalFrameListener(new InternalFrameAdapter() {
-										@Override
-										public void internalFrameActivated(InternalFrameEvent e) {
+						if (btnTim.getText().equalsIgnoreCase("Tìm")) {
+							btnThem.setEnabled(false);
+							btnXoa.setEnabled(false);
+							btnSua.setEnabled(false);
+							if (timKiemKhachHang_GUI == null || timKiemKhachHang_GUI.isClosed()) {
+								try {
+									timKiemKhachHang_GUI = new TimKiemKhachHang_GUI(ds);
+								} catch (RemoteException | MalformedURLException | NotBoundException e1) {
+									e1.printStackTrace();
+								}
+								timKiemKhachHang_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+									@Override
+									public void internalFrameActivated(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is activated.");
-										}
+									}
 
-										@Override
-										public void internalFrameDeactivated(InternalFrameEvent e) {
+									@Override
+									public void internalFrameDeactivated(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is deactivated.");
-										}
+									}
 
-										@Override
-										public void internalFrameOpened(InternalFrameEvent e) {
+									@Override
+									public void internalFrameOpened(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is opened.");
 //							            	disableButton();
-										}
+									}
 
-										@Override
-										public void internalFrameClosed(InternalFrameEvent e) {
+									@Override
+									public void internalFrameClosed(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is closed.");
-											loadData(ds);
-											ds.removeAll(ds);
-											btnThem.setEnabled(true);
-											btnXoa.setEnabled(true);
-											btnSua.setEnabled(true);
-										}
-									});
-									desktopPane.add(timKiemKhachHang_GUI).setVisible(true);
-								}
+										loadData(ds);
+										ds.removeAll(ds);
+										btnThem.setEnabled(true);
+										btnXoa.setEnabled(true);
+										btnSua.setEnabled(true);
+									}
+								});
+								desktopPane.add(timKiemKhachHang_GUI).setVisible(true);
 							}
 						}
 					}
-
 				}
 			}
 		}
@@ -535,6 +519,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			if (tb == JOptionPane.YES_OPTION) {
 				if (khachHang_DAO.xoaKhachHangTheoMa((String) model.getValueAt(row, 1))) {
 					JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công!");
+					loadData(khachHang_DAO.getAllKhachHang());
 				} else {
 					JOptionPane.showMessageDialog(null, "Không được xóa khách hàng này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của khách hàng này!");
 				}

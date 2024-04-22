@@ -199,6 +199,10 @@ public class DungCuHocTap_GUI extends JPanel {
 					btnAdd.setText("Xác Nhận");
 					btnDelete.setText("Hủy");
 					btnUpdate.setEnabled(false);
+					btnlamMoi.setEnabled(false);
+					btnTim.setEnabled(false);
+					btnKhoiPhuc.setEnabled(false);
+					btnXuatFile.setEnabled(false);
 					openText();
 				} else {
 					int tb = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm dụng cụ học tập?", "Delete",
@@ -212,6 +216,10 @@ public class DungCuHocTap_GUI extends JPanel {
 						btnAdd.setText("Thêm");
 						btnDelete.setText("Xóa");
 						btnUpdate.setEnabled(true);
+						btnlamMoi.setEnabled(true);
+						btnTim.setEnabled(true);
+						btnKhoiPhuc.setEnabled(true);
+						btnXuatFile.setEnabled(true);
 						closeText();
 						try {
 							loadData(dungCuHocTap_DAO.getAllDungCuHocTap());
@@ -236,24 +244,26 @@ public class DungCuHocTap_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (btnDelete.getText().equalsIgnoreCase("Hủy")) {
 					btnAdd.setEnabled(true);
-					closeText();
-					btnDelete.setText("Xóa");
-					btnUpdate.setText("Sửa");
 					btnUpdate.setEnabled(true);
+					btnlamMoi.setEnabled(true);
+					btnTim.setEnabled(true);
+					btnKhoiPhuc.setEnabled(true);
+					btnXuatFile.setEnabled(true);
+					btnUpdate.setText("Sửa");
 					btnAdd.setText("Thêm");
+					btnDelete.setText("Xóa");
+					closeText();
 					clearTextFields();
 				} else {
-					if (btnDelete.getText().equalsIgnoreCase("Xóa")) {
-						int r = table.getSelectedRow();
-						if (r == -1) {
-							JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm!");
-						} else {
-							xoaDungCuHocTap();
-							try {
-								refresh();
-							} catch (RemoteException e1) {
-								e1.printStackTrace();
-							}
+					int r = table.getSelectedRow();
+					if (r == -1) {
+						JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm!");
+					} else {
+						xoaDungCuHocTap();
+						try {
+							refresh();
+						} catch (RemoteException e1) {
+							e1.printStackTrace();
 						}
 					}
 				}
@@ -278,21 +288,27 @@ public class DungCuHocTap_GUI extends JPanel {
 					} else {
 						openText();
 						btnAdd.setEnabled(false);
+						btnTim.setEnabled(false);
+						btnlamMoi.setEnabled(false);
+						btnKhoiPhuc.setEnabled(false);
+						btnXuatFile.setEnabled(false);
 						btnUpdate.setText("Xác Nhận");
 						btnDelete.setText("Hủy");
 					}
 				} else {
-					if (btnUpdate.getText().equalsIgnoreCase("Xác Nhận")) {
-						closeText();
-						btnAdd.setEnabled(true);
-						btnUpdate.setText("Sửa");
-						btnDelete.setText("Xóa");
-						try {
-							suaDCHT();
-							loadData(dungCuHocTap_DAO.getAllDungCuHocTap());
-						} catch (SQLException | RemoteException e1) {
-							e1.printStackTrace();
-						}
+					btnAdd.setEnabled(true);
+					btnTim.setEnabled(true);
+					btnlamMoi.setEnabled(true);
+					btnKhoiPhuc.setEnabled(true);
+					btnXuatFile.setEnabled(true);
+					btnUpdate.setText("Sửa");
+					btnDelete.setText("Xóa");
+					closeText();
+					try {
+						suaDCHT();
+						loadData(dungCuHocTap_DAO.getAllDungCuHocTap());
+					} catch (SQLException | RemoteException e1) {
+						e1.printStackTrace();
 					}
 				}
 			}
@@ -608,7 +624,7 @@ public class DungCuHocTap_GUI extends JPanel {
 				}
 			}
 		});
-		;
+		
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);
@@ -1089,6 +1105,7 @@ public class DungCuHocTap_GUI extends JPanel {
 				}
 				dungCuHocTap.setNhaCungCap(nhacc);
 				dungCuHocTap.setHinhAnh(relativePath);
+				dungCuHocTap.setTrangThai(true);
 				dungCuHocTap_DAO.suaDungCuHocTap(dungCuHocTap);
 				JOptionPane.showMessageDialog(null, "Cập nhật thông tin dụng cụ học tập thành công!");
 			}
