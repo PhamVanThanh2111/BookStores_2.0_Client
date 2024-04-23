@@ -382,10 +382,10 @@ public class NhanVien_GUI extends JPanel {
 									
 									@Override
 									public void actionPerformed(ActionEvent e) {
-										// TODO Auto-generated method stub
 										if (btnThem.getText().equals("Thêm")) {
 											enableEdit();
 											focusable();
+											clearTextFields();
 											btnXoa.setText("Hủy");
 											btnThem.setText("Xác nhận");
 											btnLamMoi.setEnabled(false);

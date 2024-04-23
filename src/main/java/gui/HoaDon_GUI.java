@@ -735,7 +735,7 @@ public class HoaDon_GUI extends JPanel {
 		trangChu_GUI.refresh();
 	}
 	
-	private void xemHoaDon(String maHoaDon) throws JRException {
+	private synchronized void xemHoaDon(String maHoaDon) throws JRException {
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("maPhieu", maHoaDon);

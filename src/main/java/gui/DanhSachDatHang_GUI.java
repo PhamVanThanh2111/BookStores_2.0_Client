@@ -465,7 +465,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		}
 	}
 	
-	private void xuatHoaDon(String ma)  {
+	private synchronized void xuatHoaDon(String ma)  {
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("maPhieu", ma);
