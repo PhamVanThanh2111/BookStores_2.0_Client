@@ -722,7 +722,9 @@ public class DatHang_GUI extends JPanel {
             chiTietPhieuDatHang.setSoLuong(soLuong);
             chiTietPhieuDatHang.setDonGia(Float.parseFloat(model.getValueAt(i, 3).toString()));
             chiTietPhieuDatHang_DAO.themChiTietPhieuDatHang(chiTietPhieuDatHang);
-            sanPham_DAO.banSanPham(sanPham.getMaSanPham(), soLuong);
+            if (!sanPham_DAO.banSanPham(sanPham.getMaSanPham(), soLuong)) {
+				JOptionPane.showMessageDialog(null, "Sản phẩm này đã hết hàng!");
+			};
         }
 
         JOptionPane.showMessageDialog(null, "Đặt hàng thành công!");

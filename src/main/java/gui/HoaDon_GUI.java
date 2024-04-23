@@ -727,7 +727,9 @@ public class HoaDon_GUI extends JPanel {
 			chiTietHoaDon.setSoLuong(soLuong);
 			chiTietHoaDon.setDonGia(Float.parseFloat(model.getValueAt(i, 3).toString()));
 			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
-			sanPham_DAO.banSanPham(sanPham.getMaSanPham(), soLuong);
+			if (!sanPham_DAO.banSanPham(sanPham.getMaSanPham(), soLuong)) {
+				JOptionPane.showMessageDialog(null, "Sản phẩm này đã hết hàng!");
+			};
 		}
 		xemHoaDon(hoaDon.getMaHoaDon());
 		danhSachHoaDon_GUI.refresh();
