@@ -431,17 +431,22 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 							btnLamMoi.setEnabled(false);
 							openText();
 						} else {
-							try {
-								suaKhachHang();
-							} catch (Exception e1) {
-								e1.printStackTrace();
+							int option = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn sửa thông tin khách hàng?",
+									"Xác nhận", JOptionPane.YES_NO_OPTION);
+							if (option == JOptionPane.YES_OPTION) {
+								try {
+									if (suaKhachHang()) {
+										btnXoa.setText("Xóa");
+										btnSua.setText("Sửa");
+										btnThem.setEnabled(true);
+										btnTim.setEnabled(true);
+										btnLamMoi.setEnabled(true);
+										closeText();
+									}
+								} catch (Exception e1) {
+									e1.printStackTrace();
+								}
 							}
-							btnXoa.setText("Xóa");
-							btnSua.setText("Sửa");
-							btnThem.setEnabled(true);
-							btnTim.setEnabled(true);
-							btnLamMoi.setEnabled(true);
-							closeText();
 						}
 					}
 				} else {
@@ -528,7 +533,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	}
 
 	private void closeText() {
-		cbGioiTinh.setEditable(false);
 		cbGioiTinh.setEnabled(false);
 		cbGioiTinh.setBorder(null);
 		cbGioiTinh.setLayout(null);
@@ -549,7 +553,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private void openText() {
 		txtTenKH.setEditable(true);
 		txtSDT.setEditable(true);
-		cbGioiTinh.setEditable(true);
 		txtDiaChi.setEditable(true);
 		cbGioiTinh.setLayout(layoutDefaultCombobox);
 		cbGioiTinh.setBorder(borderDefault);
@@ -572,7 +575,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 				|| cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")
 				|| txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông tin rỗng!");
-
+			return false;
 		}
 		if (!txtTenKH.getText().equalsIgnoreCase("") && !txtSDT.getText().equalsIgnoreCase("")
 				&& !cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")
@@ -586,6 +589,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			khachHang_DAO.suaKhachHangTheoMa(khachHang);
 			JOptionPane.showMessageDialog(null, "Cập nhật thông tin khách hàng thành công!");
 			loadData(khachHang_DAO.getAllKhachHang());
+			return true;
 		}
 		return false;
 	}

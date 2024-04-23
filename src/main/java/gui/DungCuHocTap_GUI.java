@@ -296,17 +296,18 @@ public class DungCuHocTap_GUI extends JPanel {
 						btnDelete.setText("Hủy");
 					}
 				} else {
-					btnAdd.setEnabled(true);
-					btnTim.setEnabled(true);
-					btnlamMoi.setEnabled(true);
-					btnKhoiPhuc.setEnabled(true);
-					btnXuatFile.setEnabled(true);
-					btnUpdate.setText("Sửa");
-					btnDelete.setText("Xóa");
-					closeText();
 					try {
-						suaDCHT();
-						loadData(dungCuHocTap_DAO.getAllDungCuHocTap());
+						if (suaDCHT()) {
+							btnAdd.setEnabled(true);
+							btnTim.setEnabled(true);
+							btnlamMoi.setEnabled(true);
+							btnKhoiPhuc.setEnabled(true);
+							btnXuatFile.setEnabled(true);
+							btnUpdate.setText("Sửa");
+							btnDelete.setText("Xóa");
+							loadData(dungCuHocTap_DAO.getAllDungCuHocTap());
+							closeText();
+						}
 					} catch (SQLException | RemoteException e1) {
 						e1.printStackTrace();
 					}
@@ -1072,6 +1073,7 @@ public class DungCuHocTap_GUI extends JPanel {
 				try {
 					dungCuHocTap_DAO.xoaDungCuHocTapVaoThungRac(txtmaDCHT.getText());
 					JOptionPane.showMessageDialog(null, "Xóa thành công!");
+					return true;
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Thông tin dụng cụ học tập tồn tại trong hóa đơn hoặc phiếu đặt!");
 				}
@@ -1091,23 +1093,28 @@ public class DungCuHocTap_GUI extends JPanel {
 					|| Integer.parseInt(txtsoLuong.getText()) < 0) {
 				JOptionPane.showMessageDialog(null, "Dữ liệu không phù hợp!");
 			} else {
-				DungCuHocTap dungCuHocTap = new DungCuHocTap();
-				dungCuHocTap.setMaSanPham(txtmaDCHT.getText());
-				dungCuHocTap.setTenSanPham(txttenDCHT.getText());
-				dungCuHocTap.setXuatXu(txtXuatXu.getText());
+				int option = JOptionPane.showConfirmDialog(null, "Bạn có muốn cập nhật dụng cụ học tập?", "Update",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					DungCuHocTap dungCuHocTap = new DungCuHocTap();
+					dungCuHocTap.setMaSanPham(txtmaDCHT.getText());
+					dungCuHocTap.setTenSanPham(txttenDCHT.getText());
+					dungCuHocTap.setXuatXu(txtXuatXu.getText());
 
-				dungCuHocTap.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
-				dungCuHocTap.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
-				dungCuHocTap.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
+					dungCuHocTap.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
+					dungCuHocTap.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
+					dungCuHocTap.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
 
-				if (cbNhaCC.getSelectedIndex() != -1) {
-					nhacc = nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString());
+					if (cbNhaCC.getSelectedIndex() != -1) {
+						nhacc = nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString());
+					}
+					dungCuHocTap.setNhaCungCap(nhacc);
+					dungCuHocTap.setHinhAnh(relativePath);
+					dungCuHocTap.setTrangThai(true);
+					dungCuHocTap_DAO.suaDungCuHocTap(dungCuHocTap);
+					JOptionPane.showMessageDialog(null, "Cập nhật thông tin dụng cụ học tập thành công!");
+					return true;
 				}
-				dungCuHocTap.setNhaCungCap(nhacc);
-				dungCuHocTap.setHinhAnh(relativePath);
-				dungCuHocTap.setTrangThai(true);
-				dungCuHocTap_DAO.suaDungCuHocTap(dungCuHocTap);
-				JOptionPane.showMessageDialog(null, "Cập nhật thông tin dụng cụ học tập thành công!");
 			}
 		}
 		return false;

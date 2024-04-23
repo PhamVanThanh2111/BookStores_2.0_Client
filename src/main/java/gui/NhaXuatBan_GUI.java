@@ -378,7 +378,6 @@ public class NhaXuatBan_GUI extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
 				if (btnUpdate.getText().equals("Sửa")) {
 					if (row == -1)
@@ -393,18 +392,19 @@ public class NhaXuatBan_GUI extends JPanel {
 						btnTim.setEnabled(false);
 					}
 				} else {
-						try {
-							update();
-						} catch (RemoteException e1) {
-							e1.printStackTrace();
+					try {
+						if (update()) {
+							unfocusable();
+							btnUpdate.setText("Sửa");
+							btnDelete.setText("Xóa");
+							disableEdit();
+							btnLamMoi.setEnabled(true);
+							btnAdd.setEnabled(true);
+							btnTim.setEnabled(true);
 						}
-						unfocusable();
-						btnUpdate.setText("Sửa");
-						btnDelete.setText("Xóa");
-						disableEdit();
-						btnLamMoi.setEnabled(true);
-						btnAdd.setEnabled(true);
-						btnTim.setEnabled(true);
+					} catch (RemoteException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});

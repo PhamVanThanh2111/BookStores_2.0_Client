@@ -436,17 +436,18 @@ public class NhanVien_GUI extends JPanel {
 											}
 											else {
 												try {
-													update();
+													if (update()) {
+														btnSua.setText("Sửa");
+														btnXoa.setText("Xóa");
+														disableEdit();
+														unfocusable();
+														btnLamMoi.setEnabled(true);
+														btnThem.setEnabled(true);
+														btnTim.setEnabled(true);
+													}
 												} catch (RemoteException e1) {
 													e1.printStackTrace();
 												}
-												btnSua.setText("Sửa");
-												btnXoa.setText("Xóa");
-												disableEdit();
-												unfocusable();
-												btnLamMoi.setEnabled(true);
-												btnThem.setEnabled(true);
-												btnTim.setEnabled(true);
 											}
 										}
 									});

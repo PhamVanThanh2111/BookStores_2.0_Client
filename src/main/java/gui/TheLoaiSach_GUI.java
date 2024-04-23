@@ -196,7 +196,6 @@ public class TheLoaiSach_GUI extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
 				if (btnUpdate.getText().equals("Sửa")) {
 					if (row == -1)
@@ -212,17 +211,18 @@ public class TheLoaiSach_GUI extends JPanel {
 					}
 				} else {
 					try {
-						update();
+						if (update()) {
+							unfocusable();
+							btnUpdate.setText("Sửa");
+							btnDelete.setText("Xóa");
+							disableEdit();
+							btnLamMoi.setEnabled(true);
+							btnAdd.setEnabled(true);
+							btnTim.setEnabled(true);
+						}
 					} catch (RemoteException e1) {
 						e1.printStackTrace();
 					}
-					unfocusable();
-					btnUpdate.setText("Sửa");
-					btnDelete.setText("Xóa");
-					disableEdit();
-					btnLamMoi.setEnabled(true);
-					btnAdd.setEnabled(true);
-					btnTim.setEnabled(true);
 				}
 			}
 		});
